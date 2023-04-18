@@ -1,8 +1,8 @@
-import { View, Text, SafeAreaView, Image, TouchableOpacity } from 'react-native'
 import React, { useLayoutEffect } from 'react'
+import * as Animatable from 'react-native-animatable'
+import { View, Text, SafeAreaView, Image, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { HeroImage } from '../assets'
-
 const HomeScreen = () => {
 
     const navigation = useNavigation()
@@ -32,17 +32,17 @@ const HomeScreen = () => {
             <View className="w-[300px] h-[300px] absolute rounded-full -bottom-32 -left-20 bg-[#E99265]"></View>
             {/* Image Container */}
             <View className="flex-1 relative items-center justify-center">
-                <Image source={HeroImage}
+                <Animatable.Image source={HeroImage}
+                    animation="fadeIn"
+                    easing="ease-in-out"
                     className="w-[450px] h-[450px] object-cover mt-20"
                     resizeMode="contain"
                 />
-                <View className="w-24 h-24 rounded-full absolute border-t-4 border-l-2 border-r-2 border-[#00BCC9] bottom-20 items-center justify-center">
-                    <TouchableOpacity>
-                        <View className="w-20 h-20 bg-[#00BCC9] rounded-full items-center justify-center" >
+                <TouchableOpacity activeOpacity={0.3} className="w-24 h-24 rounded-full absolute border-t-4 border-l-2 border-r-2 border-[#00BCC9] bottom-20 items-center justify-center">
+                        <Animatable.View animation={"pulse"} easing="ease-in-out" iterationCount="infinite" className="w-20 h-20 bg-[#00BCC9] rounded-full items-center justify-center" >
                             <Text className="text-gray-50 text-[36px] font-semibold ">Go</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
+                        </Animatable.View>
+                </TouchableOpacity>
             </View>
         </SafeAreaView>
     )
